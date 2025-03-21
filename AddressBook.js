@@ -34,6 +34,9 @@ class AddressBook {
   findByName(firstName, lastName){
   return this.contacts.find(c=>c.firstName===firstName && c.lastName===lastName);
   }
+  findByCityOrState(query){
+    return this.contacts.find(c=>c.city===query || c.state===query);
+  }
   editContact(firstName, lastName, updatedContact){
   let contact=this.findByName(firstName, lastName);
   if(contact){
@@ -57,8 +60,9 @@ class AddressBook {
 
 let addressBook = new AddressBook();
 try {
-  addressBook.addContact(new Contact("Krishna", "Agarwal", "123 Main St", "New York", "New York", "10001", "1234567890", "john@example.com"));
-  addressBook.addContact(new Contact("Juhi", "Agarwal", "456 Elm St", "Los Angeles", "California", "90001", "0987654321", "jane@example.com"));
+  addressBook.addContact(new Contact("Krishna", "Agarwal", "123 Main St", "New York", "New York", "10001", "1234567890", "krishna@gmail.com"));
+  addressBook.addContact(new Contact("Juhi", "Agarwal", "456 Elm St", "Los Angeles", "California", "90001", "0987654321", "juhi@gmail.com"));
+  addressBook.addContact(new Contact("Juhi", "Agarwal", "789 Main Street", "Dakota", "Dakotas", "90001", "0987654321", "yashi@gmail.com"));
 } catch (error) {
   console.error(error.message);
 }
@@ -66,3 +70,4 @@ console.log(addressBook.totalContacts());
 console.log(addressBook.deleteContact("Juhi","Agarwal"));
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
 console.log(addressBook.listContacts());
+console.log(addressBook.findByCityOrState("New York"));
