@@ -72,6 +72,18 @@ class AddressBook {
     return this.contacts.sort((a, b) => (a.firstName + a.lastName).localeCompare(b.firstName + b.lastName));
   }
 
+  sortByCity() {
+    return this.contacts.sort((a, b) => a.city.localeCompare(b.city));
+  }
+
+  sortByState() {
+    return this.contacts.sort((a, b) => a.state.localeCompare(b.state));
+  }
+
+  sortByZip() {
+    return this.contacts.sort((a, b) => a.zip.localeCompare(b.zip));
+  }
+
   listContacts(){
   return this.contacts;
   }
@@ -97,4 +109,7 @@ console.log(addressBook.listContacts());
 
 console.log(addressBook.viewByCityOrState("New York"));
 
-console.log("Sorted Contacts:", addressBook.sortByName());
+console.log("Sorted Contacts by Name:", addressBook.sortByName());
+console.log("Sorted Contacts by City:", addressBook.sortByCity());
+console.log("Sorted Contacts by State:", addressBook.sortByState());
+console.log("Sorted Contacts by Zip:", addressBook.sortByZip());
