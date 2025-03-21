@@ -68,6 +68,10 @@ class AddressBook {
     return this.contacts.reduce(count=>count+1,0);
   }
 
+  sortByName() {
+    return this.contacts.sort((a, b) => (a.firstName + a.lastName).localeCompare(b.firstName + b.lastName));
+  }
+
   listContacts(){
   return this.contacts;
   }
@@ -84,7 +88,13 @@ try {
 }
 
 console.log(addressBook.totalContacts());
+
 console.log(addressBook.deleteContact("Juhi","Agarwal"));
+
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
+
 console.log(addressBook.listContacts());
+
 console.log(addressBook.viewByCityOrState("New York"));
+
+console.log("Sorted Contacts:", addressBook.sortByName());
