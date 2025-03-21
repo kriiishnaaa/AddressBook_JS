@@ -24,6 +24,11 @@ class AddressBook {
     this.contacts = [];
   }
   addContact(contact) {
+    const isDuplicate = this.contacts.some(c => c.firstName === contact.firstName && c.lastName === contact.lastName);
+    if (isDuplicate) {
+      throw new Error("Duplicate contact: Person with this name already exists.");
+    }
+
     this.contacts.push(contact);
   }
   findByName(firstName, lastName){
