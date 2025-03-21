@@ -37,17 +37,23 @@ class AddressBook {
   }
   return "Contact Not Found";
   }
+  deleteContact(firstName,lastName){
+    let initialLength=this.contacts.length;
+    this.contacts=this.contacts.filter(c=>c.firstName!==firstName && c.lastName!==lastName);
+    return (initialLength>this.contacts.length)?"contact deleted":"contact Not Found";
+  }
   listContacts(){
   return this.contacts;
   }
 }
 
-const addressBook = new AddressBook();
+let addressBook = new AddressBook();
 try {
   addressBook.addContact(new Contact("Krishna", "Agarwal", "123 Main St", "New York", "New York", "10001", "1234567890", "john@example.com"));
   addressBook.addContact(new Contact("Juhi", "Agarwal", "456 Elm St", "Los Angeles", "California", "90001", "0987654321", "jane@example.com"));
 } catch (error) {
   console.error(error.message);
 }
+console.log(addressBook.deleteContact("Juhi","Agarwal"));
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
 console.log(addressBook.listContacts());
