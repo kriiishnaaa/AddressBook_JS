@@ -19,3 +19,25 @@ class Contact {
     this.email = email;
   }
 }
+class AddressBook {
+  constructor() {
+    this.contacts = [];
+  }
+
+  addContact(contact) {
+    this.contacts.push(contact);
+  }
+  listContacts(){
+  return this.contacts;
+  }
+}
+
+const addressBook = new AddressBook();
+try {
+  addressBook.addContact(new Contact("John", "Doe", "123 Main St", "New York", "NY", "10001", "1234567890", "john@example.com"));
+  addressBook.addContact(new Contact("Jane", "Doe", "456 Elm St", "Los Angeles", "CA", "90001", "0987654321", "jane@example.com"));
+} catch (error) {
+  console.error(error.message);
+}
+
+console.log(addressBook.listContacts());
