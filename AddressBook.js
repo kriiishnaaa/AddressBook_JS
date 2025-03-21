@@ -42,6 +42,9 @@ class AddressBook {
     this.contacts=this.contacts.filter(c=>c.firstName!==firstName && c.lastName!==lastName);
     return (initialLength>this.contacts.length)?"contact deleted":"contact Not Found";
   }
+  totalContacts(){
+    return this.contacts.reduce(count=>count+1,0);
+  }
   listContacts(){
   return this.contacts;
   }
@@ -54,6 +57,7 @@ try {
 } catch (error) {
   console.error(error.message);
 }
+console.log(addressBook.totalContacts());
 console.log(addressBook.deleteContact("Juhi","Agarwal"));
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
 console.log(addressBook.listContacts());
