@@ -31,16 +31,24 @@ class AddressBook {
 
     this.contacts.push(contact);
   }
+
   findByName(firstName, lastName){
   return this.contacts.find(c=>c.firstName===firstName && c.lastName===lastName);
   }
+
   findByCityOrState(query){
     return this.contacts.find(c=>c.city===query || c.state===query);
   }
+
   viewByCityOrState(query){
     let contact = this.contacts.find(c=>c.city===city || c.state===state);
     return (contact)?contact.firstName+" "+contact.lastName:"contact not found";
   }
+
+  countByCityOrState(query) {
+    return this.contacts.reduce((count, c) => (c.city === query || c.state === query) ? count + 1 : count, 0);
+  }
+
   editContact(firstName, lastName, updatedContact){
   let contact=this.findByName(firstName, lastName);
   if(contact){
@@ -49,27 +57,32 @@ class AddressBook {
   }
   return "Contact Not Found";
   }
+
   deleteContact(firstName,lastName){
     let initialLength=this.contacts.length;
     this.contacts=this.contacts.filter(c=>c.firstName!==firstName && c.lastName!==lastName);
     return (initialLength>this.contacts.length)?"contact deleted":"contact Not Found";
   }
+
   totalContacts(){
     return this.contacts.reduce(count=>count+1,0);
   }
+
   listContacts(){
   return this.contacts;
   }
+
 }
 
 let addressBook = new AddressBook();
 try {
   addressBook.addContact(new Contact("Krishna", "Agarwal", "123 Main St", "New York", "New York", "10001", "1234567890", "krishna@gmail.com"));
   addressBook.addContact(new Contact("Juhi", "Agarwal", "456 Elm St", "Los Angeles", "California", "90001", "0987654321", "juhi@gmail.com"));
-  addressBook.addContact(new Contact("Juhi", "Agarwal", "789 Main Street", "Dakota", "Dakotas", "90001", "0987654321", "yashi@gmail.com"));
+  addressBook.addContact(new Contact("Yashi", "Agarwal", "789 Main Street", "Dakota", "Dakotas", "90001", "0987654321", "yashi@gmail.com"));
 } catch (error) {
   console.error(error.message);
 }
+
 console.log(addressBook.totalContacts());
 console.log(addressBook.deleteContact("Juhi","Agarwal"));
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
