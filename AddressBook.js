@@ -37,6 +37,10 @@ class AddressBook {
   findByCityOrState(query){
     return this.contacts.find(c=>c.city===query || c.state===query);
   }
+  viewByCityOrState(query){
+    let contact = this.contacts.find(c=>c.city===city || c.state===state);
+    return (contact)?contact.firstName+" "+contact.lastName:"contact not found";
+  }
   editContact(firstName, lastName, updatedContact){
   let contact=this.findByName(firstName, lastName);
   if(contact){
@@ -70,4 +74,4 @@ console.log(addressBook.totalContacts());
 console.log(addressBook.deleteContact("Juhi","Agarwal"));
 console.log(addressBook.editContact("Krihs", "Doe",{phone:"2341854107", city:"Chicago"}));
 console.log(addressBook.listContacts());
-console.log(addressBook.findByCityOrState("New York"));
+console.log(addressBook.viewByCityOrState("New York"));
